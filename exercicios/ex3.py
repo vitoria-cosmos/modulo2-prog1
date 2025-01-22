@@ -1,164 +1,88 @@
 import random
 
-# navio1 = ['n']
-# navio2 = ['n']
-# navio3 = ['n', 'n']
-# navio4 = ['n', 'n', 'n']
+nome = input('Qual o seu nome? ')
 
-lista_principal01 = [[['n'], ['a'], ['a'], ['a'], ['a']],
-                    [['a'], ['a'], ['a'], ['a'], ['n']],
-                    [['a'], ['a'], ['a'], ['a'], ['n']],
-                    [['n'], ['a'], ['a'], ['a'], ['n']],
-                    [['a'], ['a'], ['a'], ['a'], ['a']]]
+pergunta1 = f'Responda sim ou não, {nome}: 2 + 2 = 4? '
+pergunta2 = f'Responda sim ou não, {nome}: 2 * 2 = 5? '
+pergunta3 = f'Responda sim ou não, {nome}: 2 / 2 = 1? '
 
+gabarito = [['SIM', 'NÃO', pergunta1],
+            ['NÃO', 'SIM', pergunta2],
+            ['SIM', 'NÃO', pergunta3]]
 
-numeros_colunas = [0, 1, 2, 3, 4]
-numeros_linhas = [0, 1, 2, 3, 4]
-colunas_aleatorio = random.sample(numeros_colunas, k=5)
-linhas_aleatorio = random.sample(numeros_linhas, k=5)
-print(colunas_aleatorio)
-# um navio 1 parte
-navio1 = lista_principal01[0][0]
-# linha 0
-a1 = lista_principal01[0][1]
-a2 = lista_principal01[0][2]
-a3 = lista_principal01[0][3]
-a4 = lista_principal01[0][4]
+ponto1 = 0
+ponto2 = 0
+ponto3 = 0
+ponto4 = 0
 
-# um navio 1 parte
-navio2 = lista_principal01[1][4]
-# linha 1
-a5 = lista_principal01[1][0]
-a6 = lista_principal01[1][1]
-a7 = lista_principal01[1][2]
-a8 = lista_principal01[1][3]
+perguntas_sorteadas = random.sample(gabarito, k=3)
 
 
+def imprime_resultado(resposta, resposta_certa, resposta_errada):
+  if resposta == resposta_certa:
+    print('Acertou, ganhou 1 ponto')
+  elif resposta == resposta_errada:
+    print('errou, ganhou 0 pontos')
+  else:
+    print('Resposta inválida')
 
-# tres navios na vertical
-navio3 = lista_principal01[1][4]
-navio4 = lista_principal01[2][4]
-# linha 2
-a9 = lista_principal01[2][0]
-a10 = lista_principal01[2][1]
-a11 = lista_principal01[2][2]
-a12 = lista_principal01[2][3]
-navio5 = lista_principal01[3][4]
+p1 = (input(perguntas_sorteadas[0][2])).upper()
+if p1 == perguntas_sorteadas[0][0]:
+  ponto1 = 1
 
-# dois navios na horizontal
-navio9 = lista_principal01[3][0]
-navio10 = lista_principal01[3][1]
-# linha 3
-a13 = lista_principal01[3][1]
-a14 = lista_principal01[3][2]
-a15 = lista_principal01[3][3]
-
-# linha 4
-a16 = lista_principal01[4][0]
-a17 = lista_principal01[4][1]
-a18 = lista_principal01[4][2]
-a19 = lista_principal01[4][3]
-a20 = lista_principal01[4][4]
+imprime_resultado(p1, perguntas_sorteadas[0][0], perguntas_sorteadas[0][1])
+print(ponto1)
 
 
+p2 = (input(perguntas_sorteadas[1][2])).upper()
 
-lista_principal02 = [[['n'], ['n'], ['n'], ['.'], ['.']],
-                    [['.'], ['.'], ['.'], ['.'], ['n']],
-                    [['.'], ['.'], ['.'], ['.'], ['n']],
-                    [['.'], ['n'], ['.'], ['.'], ['.']],
-                    [['.'], ['.'], ['n'], ['.'], ['.']]]
+if p2 == perguntas_sorteadas[1][0]:
+  ponto2 = 1
+imprime_resultado(p2, perguntas_sorteadas[1][0], perguntas_sorteadas[1][1])
 
-# um navio 2 parte
-navio01 = lista_principal02[3][1]
+p3 = (input(perguntas_sorteadas[2][2])).upper()
 
-# um navio 2 parte
-navio02 = lista_principal02[4][2]
+if p3 == perguntas_sorteadas[2][0]:
+  ponto3 = 1
+imprime_resultado(p3, perguntas_sorteadas[2][0], perguntas_sorteadas[2][1])
 
+escolha_usuario = input('Deseja criar a última pergunta? Digite sim ou não: ').upper()
+if escolha_usuario == 'SIM':
+  pergunta_usuario = input('Digite sua pergunta: ')
+  resposta_sim = input('Digite a resposta certa: ')
+  resposta_nao = input('Digite a resposta errada: ')
 
-# tres navios na horizontal
-navio03 = lista_principal02[0][0]
-navio04 = lista_principal02[0][1]
-navio05 = lista_principal02[0][2]
+  gabarito_usuario = [
+      f'{resposta_sim}', 'SIM', f'{resposta_nao}', 'NÃO',
+      pergunta_usuario
+  ]
+  perguntas_sorteadas.append(gabarito_usuario)
 
-# dois navios na vertical
-navio06 = lista_principal02[1][4]
-navio07 = lista_principal02[2][4]
+  resposta_usuario = input(f'Responda sim ou não, {nome}: {perguntas_sorteadas[3][4]} ').upper()
 
+  if resposta_usuario == perguntas_sorteadas[3][1]:
+    ponto4 = 1
+  imprime_resultado(resposta_usuario, perguntas_sorteadas[3][1], perguntas_sorteadas[3][3])
 
+def calcula_pontos(p1, p2, p3, p4):
+  pots_tts = p1 + p2 + p3 + p4
+  return pots_tts
 
+def calcula_metade(pot_tot, lista_perguntas):
+  met = pot_tot / len(lista_perguntas)
+  return met
 
-
-
-
-
-
-navios1 = ['t', 't', 't', 't', 't', 't', 't', 't', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a']
-
-lista_principal = [[['.'], ['.'], ['.'], ['.'], ['.']],
-                   [['.'], ['.'], ['.'], ['.'], ['.']],
-                   [['.'], ['.'], ['.'], ['.'], ['.']],
-                   [['.'], ['.'], ['.'], ['.'], ['.']],
-                   [['.'], ['.'], ['.'], ['.'], ['.']]]
-
-print(f"""            0    1   2   3   4
-         0 | {lista_principal[0][0][0]} | {lista_principal[0][1][0]} | {lista_principal[0][2][0]} | {lista_principal[0][3][0]} | {lista_principal[0][4][0]} | \n
-         1 | {lista_principal[1][0][0]} | {lista_principal[1][1][0]} | {lista_principal[1][2][0]} | {lista_principal[1][3][0]} | {lista_principal[1][4][0]} | \n
-         2 | {lista_principal[2][0][0]} | {lista_principal[2][1][0]} | {lista_principal[2][2][0]} | {lista_principal[2][3][0]} | {lista_principal[2][4][0]} | \n
-         3 | {lista_principal[3][0][0]} | {lista_principal[3][1][0]} | {lista_principal[3][2][0]} | {lista_principal[3][3][0]} | {lista_principal[3][4][0]} | \n
-         4 | {lista_principal[4][0][0]} | {lista_principal[4][1][0]} | {lista_principal[4][2][0]} | {lista_principal[4][3][0]} | {lista_principal[4][4][0]} |
-
-""")
-
-def jogar(navios, tiros):
-  hoz = tiros[0]
-  ver = tiros[1]
-  lista_principal[hoz][ver] = navios
-  print(f"""            0    1   2   3   4
-         0 | {lista_principal[0][0][0]} | {lista_principal[0][1][0]} | {lista_principal[0][2][0]} | {lista_principal[0][3][0]} | {lista_principal[0][4][0]} | \n
-         1 | {lista_principal[1][0][0]} | {lista_principal[1][1][0]} | {lista_principal[1][2][0]} | {lista_principal[1][3][0]} | {lista_principal[1][4][0]} | \n
-         2 | {lista_principal[2][0][0]} | {lista_principal[2][1][0]} | {lista_principal[2][2][0]} | {lista_principal[2][3][0]} | {lista_principal[2][4][0]} | \n
-         3 | {lista_principal[3][0][0]} | {lista_principal[3][1][0]} | {lista_principal[3][2][0]} | {lista_principal[3][3][0]} | {lista_principal[3][4][0]} | \n
-         4 | {lista_principal[4][0][0]} | {lista_principal[4][1][0]} | {lista_principal[4][2][0]} | {lista_principal[4][3][0]} | {lista_principal[4][4][0]} |
-
-  """)
-
-# x = horizontal, y = vertical
-h1 = int(input('Digite a cordenada horizontal: '))
-v1 = int(input('Digite a cordenada vertical: '))
-lista_tiros1 = [h1, v1]
-navios = random.sample(navios1, k=1)
-jogar(navios, lista_tiros1)
+pontos_totais = calcula_pontos(ponto1, ponto2, ponto3, ponto4)
+metade = calcula_metade(pontos_totais, perguntas_sorteadas)
 
 
-h2 = int(input('Digite a cordenada horizontal: '))
-v2 = int(input('Digite a cordenada vertical: '))
-lista_tiros2 = [h2, v2]
-navios = random.sample(navios1, k=1)
-jogar(navios, lista_tiros2)
+if pontos_totais == 0:
+  print('Você não acertou nenhuma pergunta')
+elif pontos_totais > 0 and pontos_totais < metade:
+  print('Você acertou menos da metade das perguntas')
+elif pontos_totais > metade and pontos_totais < len(perguntas_sorteadas):
+  print('Você acertou mais da metade!')
+elif pontos_totais == len(perguntas_sorteadas):
+  print('Você acertou todas as perguntas!')
 
-
-
-
-h3 = int(input('Digite a cordenada horizontal: '))
-v3 = int(input('Digite a cordenada vertical: '))
-lista_tiros3 = [h3, v3]
-navios = random.sample(navios1, k=1)
-jogar(navios, lista_tiros3)
-
-
-h4 = int(input('Digite a cordenada horizontal: '))
-v4 = int(input('Digite a cordenada vertical: '))
-lista_tiros4 = [h4, v4]
-navios = random.sample(navios1, k=1)
-jogar(navios, lista_tiros4)
-
-
-
-h5 = int(input('Digite a cordenada horizontal: '))
-v5 = int(input('Digite a cordenada vertical: '))
-lista_tiros5 = [h5, v5]
-navios = random.sample(navios1, k=1)
-jogar(navios, lista_tiros5)
-
-
-
+print(f'Obrigada por participar!')
